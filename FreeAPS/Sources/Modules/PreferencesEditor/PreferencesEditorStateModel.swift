@@ -352,7 +352,7 @@ extension PreferencesEditor {
                     displayName: NSLocalizedString("SMB Interval", comment: "SMB Interval"),
                     type: .decimal(keypath: \.smbInterval),
                     infoText: NSLocalizedString(
-                        "Minimum duration in minutes between new SMB and the previous manual bolus or the previous SMB",
+                        "Minimum duration in minutes for new SMB since last SMB or manual bolus",
                         comment: "SMB Interval"
                     ),
                     settable: self
