@@ -351,7 +351,10 @@ extension PreferencesEditor {
                 Field(
                     displayName: NSLocalizedString("SMB Interval", comment: "SMB Interval"),
                     type: .decimal(keypath: \.smbInterval),
-                    infoText: NSLocalizedString("Minimum duration in minutes between new SMB and the previous manual bolus or the previous SMB", comment: "SMB Interval"),
+                    infoText: NSLocalizedString(
+                        "Minimum duration in minutes between new SMB and the previous manual bolus or the previous SMB",
+                        comment: "SMB Interval"
+                    ),
                     settable: self
                 ),
                 Field(
