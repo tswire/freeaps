@@ -35,7 +35,7 @@ struct durationButton<T: DurationButton>: View {
         .buttonBorderShape(.automatic)
         .controlSize(.mini)
         .buttonStyle(.bordered)
-        .padding([.trailing], 10)
+        .padding([.trailing], 15)
         .frame(maxWidth: .infinity, alignment: .trailing)
     }
 }

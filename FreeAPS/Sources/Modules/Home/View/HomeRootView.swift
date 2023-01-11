@@ -11,6 +11,8 @@ extension Home {
         @State var isStatusPopupPresented = false
         @State var selectedState: durationState
 
+        public let paddingSpace: CGFloat = 15
+
         private var numberFormatter: NumberFormatter {
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
@@ -359,9 +361,9 @@ extension Home {
         }
 
         @ViewBuilder private func averageTIRhca1c(
-            _ hba1c_all: String,
+            _: String,
             _ average_: String,
-            _ median_: String,
+            _: String,
             _ tir_low: String,
             _ tir_high: String,
             _ tir_: String,
@@ -371,39 +373,48 @@ extension Home {
         ) -> some View {
             HStack {
                 Group {
-                    HStack {
-                        Text(NSLocalizedString("Average", comment: "")).font(.caption2).foregroundColor(.secondary)
+                    if selectedState != .total {
+                        HStack {
+                            Text("HbA1c").font(.footnote).foregroundColor(.secondary)
+                            Text(hba1c_).font(.footnote)
+                        }
+                        .padding([.leading], paddingSpace)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        HStack {
+                            Text(
+                                "\(NSLocalizedString("HbA1c", comment: "")) (\(targetFormatter.string(from: (state.statistics?.GlucoseStorage_Days ?? 0) as NSNumber) ?? "") \(NSLocalizedString("days", comment: "")))"
+                            )
+                            .font(.footnote).foregroundColor(.secondary)
+                            Text(hba1c_).font(.footnote)
+                        }
+                        .padding([.leading], paddingSpace)
+                        .frame(minWidth: 180, alignment: .leading)
+                    }
 
+                    HStack {
+                        Text(NSLocalizedString("Average", comment: "")).font(.footnote).foregroundColor(.secondary)
                         Text(average_).font(.footnote)
-                    }
-                    .padding([.leading], 10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                    HStack {
-                        Text("Median")
-                            .font(.caption2).foregroundColor(.secondary)
-
-                        Text(median_).font(.footnote)
-                    }
+                    }.frame(minWidth: 120)
 
                     if !state.settingsManager.preferences.displaySD {
                         HStack {
                             Text(
                                 NSLocalizedString("CV", comment: "CV")
-                            ).font(.caption2).foregroundColor(.secondary)
+                            ).font(.footnote).foregroundColor(.secondary)
 
                             Text(cv_).font(.footnote)
                         }
-                        .padding([.trailing], 10)
+                        .padding([.trailing], paddingSpace)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     } else {
                         HStack {
                             Text(
                                 NSLocalizedString("SD", comment: "SD")
-                            ).font(.caption2).foregroundColor(.secondary)
+                            ).font(.footnote).foregroundColor(.secondary)
                             Text(sd_).font(.footnote)
                         }
-                        .padding()
+                        .padding([.trailing], paddingSpace)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
@@ -417,15 +428,16 @@ extension Home {
                                     targetFormatter
                                         .string(from: state.settingsManager.preferences.low as NSNumber) ?? ""
                                 ) + ")"
-                        ).font(.caption2)
-                            .foregroundColor(.secondary)
+                        )
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
 
                         Text(tir_low + " %").font(.footnote).foregroundColor(.loopRed)
                     }
-                    .padding([.leading], 10)
+                    .padding([.leading], paddingSpace)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                    Text("Normal").font(.caption2).foregroundColor(.secondary)
+                    Text("Normal").font(.footnote).foregroundColor(.secondary)
 
                     Text(tir_ + " %").font(.footnote).foregroundColor(.loopGreen)
 
@@ -437,52 +449,11 @@ extension Home {
                                         .string(from: state.settingsManager.preferences.high as NSNumber) ?? ""
                                 ) + ")"
                         )
-                        .font(.caption2).foregroundColor(.secondary)
+                        .font(.footnote).foregroundColor(.secondary)
 
                         Text(tir_high + " %").font(.footnote).foregroundColor(.loopYellow)
                     }
-                    .padding([.trailing], 10)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                }
-            }
-            HStack {
-                Group {
-                    if selectedState != .total {
-                        HStack {
-                            Text("HbA1c").font(.caption2).foregroundColor(.secondary)
-                            Text(hba1c_).font(.footnote)
-                        }
-                        .padding([.leading], 10)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    if selectedState == .total {
-                        HStack {
-                            Text(
-                                "HbA1c \(NSLocalizedString("all", comment: "")) \(targetFormatter.string(from: (state.statistics?.GlucoseStorage_Days ?? 0) as NSNumber) ?? "") \(NSLocalizedString("days", comment: ""))"
-                            )
-                            .font(.caption2).foregroundColor(.secondary)
-
-                            Text(hba1c_all).font(.footnote)
-                        }
-                        .padding([.leading], 10)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    } else {
-                        HStack {
-                            Text(
-                                "\(NSLocalizedString("All", comment: "")) \(targetFormatter.string(from: (state.statistics?.GlucoseStorage_Days ?? 0) as NSNumber) ?? "") \(NSLocalizedString("days", comment: ""))"
-                            )
-                            .font(.caption2).foregroundColor(.secondary)
-
-                            Text(hba1c_all).font(.footnote)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    HStack {
-                        Text("Time").font(.caption2).foregroundColor(.secondary)
-                        Text(dateFormatter.string(from: state.statistics?.created_at ?? Date())).font(.footnote)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding([.trailing], 10)
+                    .padding([.trailing], paddingSpace)
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
@@ -491,29 +462,28 @@ extension Home {
                 HStack {
                     Group {
                         HStack {
-                            Text("Loops").font(.caption2).foregroundColor(.secondary)
+                            Text("Loops").font(.footnote).foregroundColor(.secondary)
                             Text(
                                 tirFormatter
                                     .string(from: (state.statistics?.Statistics.LoopCycles.loops ?? 0) as NSNumber) ?? ""
                             ).font(.footnote)
                         }
-                        .padding([.leading], 10)
+                        .padding([.leading], paddingSpace)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                         HStack {
-                            Text("Interval").font(.caption2)
+                            Text("Interval").font(.footnote)
                                 .foregroundColor(.secondary)
                             Text(
                                 targetFormatter
                                     .string(from: (state.statistics?.Statistics.LoopCycles.avg_interval ?? 0) as NSNumber) ??
                                     ""
                             ).font(.footnote)
-                            Text("min").font(.caption2).foregroundColor(.secondary)
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .center)
 
                         HStack {
-                            Text("Duration").font(.caption2)
+                            Text("Duration").font(.footnote)
                                 .foregroundColor(.secondary)
                             Text(
                                 numberFormatter
@@ -521,9 +491,8 @@ extension Home {
                                         from: (state.statistics?.Statistics.LoopCycles.median_duration ?? 0) as NSNumber
                                     ) ?? ""
                             ).font(.footnote)
-                            Text("min").font(.caption2).foregroundColor(.secondary)
                         }
-                        .padding([.trailing], 10)
+                        .padding([.trailing], paddingSpace)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
