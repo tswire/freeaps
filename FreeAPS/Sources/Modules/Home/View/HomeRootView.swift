@@ -378,8 +378,6 @@ extension Home {
                             Text("HbA1c").font(.footnote).foregroundColor(.secondary)
                             Text(hba1c_).font(.footnote)
                         }
-                        .padding([.leading], paddingSpace)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                     } else {
                         HStack {
                             Text(
@@ -388,14 +386,12 @@ extension Home {
                             .font(.footnote).foregroundColor(.secondary)
                             Text(hba1c_).font(.footnote)
                         }
-                        .padding([.leading], paddingSpace)
-                        .frame(minWidth: 180, maxWidth: .infinity, alignment: .leading)
                     }
 
                     HStack {
                         Text(NSLocalizedString("Average", comment: "")).font(.footnote).foregroundColor(.secondary)
                         Text(average_).font(.footnote)
-                    }.frame(minWidth: 120)
+                    }.frame(minWidth: 110)
 
                     if !state.settingsManager.preferences.displaySD {
                         HStack {
@@ -405,8 +401,6 @@ extension Home {
 
                             Text(cv_).font(.footnote)
                         }
-                        .padding([.trailing], paddingSpace)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                     } else {
                         HStack {
                             Text(
@@ -414,8 +408,6 @@ extension Home {
                             ).font(.footnote).foregroundColor(.secondary)
                             Text(sd_).font(.footnote)
                         }
-                        .padding([.trailing], paddingSpace)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
                     }
                 }
             }
@@ -430,13 +422,11 @@ extension Home {
 
                         Text(tir_low + " %").font(.footnote).foregroundColor(.loopRed)
                     }
-                    .padding([.leading], paddingSpace)
-                    .frame(minWidth: 110, maxWidth: .infinity, alignment: .leading)
 
                     HStack {
                         Text("Normal").font(.footnote).foregroundColor(.secondary)
                         Text(tir_ + " %").font(.footnote).foregroundColor(.loopGreen)
-                    }.frame(minWidth: 160, maxWidth: .infinity)
+                    }
 
                     HStack {
                         Text(
@@ -446,8 +436,6 @@ extension Home {
 
                         Text(tir_high + " %").font(.footnote).foregroundColor(.loopYellow)
                     }
-                    .padding([.trailing], paddingSpace)
-                    .frame(minWidth: 120, maxWidth: .infinity, alignment: .trailing)
                 }
             }
 
@@ -461,8 +449,6 @@ extension Home {
                                     .string(from: (state.statistics?.Statistics.LoopCycles.loops ?? 0) as NSNumber) ?? ""
                             ).font(.footnote)
                         }
-                        .padding([.leading], paddingSpace)
-                        .frame(maxWidth: .infinity, alignment: .leading)
 
                         HStack {
                             Text("Interval").font(.footnote)
@@ -473,7 +459,6 @@ extension Home {
                                     ""
                             ).font(.footnote)
                         }
-                        .frame(maxWidth: .infinity, alignment: .center)
 
                         HStack {
                             Text("Duration").font(.footnote)
@@ -485,8 +470,6 @@ extension Home {
                                     ) ?? ""
                             ).font(.footnote)
                         }
-                        .padding([.trailing], paddingSpace)
-                        .frame(minWidth: 150, maxWidth: .infinity, alignment: .trailing)
                     }
                 }
             }
