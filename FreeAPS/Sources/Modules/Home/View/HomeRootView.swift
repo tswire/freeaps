@@ -389,7 +389,7 @@ extension Home {
                             Text(hba1c_).font(.footnote)
                         }
                         .padding([.leading], paddingSpace)
-                        .frame(minWidth: 180, alignment: .leading)
+                        .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
                     }
 
                     HStack {
@@ -435,10 +435,9 @@ extension Home {
                         Text(tir_low + " %").font(.footnote).foregroundColor(.loopRed)
                     }
                     .padding([.leading], paddingSpace)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(minWidth: 130, maxWidth: .infinity, alignment: .leading)
 
                     Text("Normal").font(.footnote).foregroundColor(.secondary)
-
                     Text(tir_ + " %").font(.footnote).foregroundColor(.loopGreen)
 
                     HStack {
@@ -454,7 +453,7 @@ extension Home {
                         Text(tir_high + " %").font(.footnote).foregroundColor(.loopYellow)
                     }
                     .padding([.trailing], paddingSpace)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(minWidth: 130, maxWidth: .infinity, alignment: .trailing)
                 }
             }
 
