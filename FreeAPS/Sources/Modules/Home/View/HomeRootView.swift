@@ -229,7 +229,7 @@ extension Home {
 
         @ViewBuilder private func statPanel() -> some View {
             if state.displayStatistics {
-                VStack(spacing: 10) {
+                VStack(spacing: 8) {
                     durationButton(states: durationState.allCases, selectedState: $selectedState)
 
                     switch selectedState {
@@ -389,7 +389,7 @@ extension Home {
                             Text(hba1c_).font(.footnote)
                         }
                         .padding([.leading], paddingSpace)
-                        .frame(minWidth: 200, maxWidth: .infinity, alignment: .leading)
+                        .frame(minWidth: 180, maxWidth: .infinity, alignment: .leading)
                     }
 
                     HStack {
@@ -423,11 +423,7 @@ extension Home {
                 Group {
                     HStack {
                         Text(
-                            NSLocalizedString("Low (<", comment: " ") +
-                                (
-                                    targetFormatter
-                                        .string(from: state.settingsManager.preferences.low as NSNumber) ?? ""
-                                ) + ")"
+                            NSLocalizedString("Low", comment: " ")
                         )
                         .font(.footnote)
                         .foregroundColor(.secondary)
@@ -435,25 +431,23 @@ extension Home {
                         Text(tir_low + " %").font(.footnote).foregroundColor(.loopRed)
                     }
                     .padding([.leading], paddingSpace)
-                    .frame(minWidth: 130, maxWidth: .infinity, alignment: .leading)
+                    .frame(minWidth: 110, maxWidth: .infinity, alignment: .leading)
 
-                    Text("Normal").font(.footnote).foregroundColor(.secondary)
-                    Text(tir_ + " %").font(.footnote).foregroundColor(.loopGreen)
+                    HStack {
+                        Text("Normal").font(.footnote).foregroundColor(.secondary)
+                        Text(tir_ + " %").font(.footnote).foregroundColor(.loopGreen)
+                    }.frame(minWidth: 160, maxWidth: .infinity)
 
                     HStack {
                         Text(
-                            NSLocalizedString("High (>", comment: " ") +
-                                (
-                                    targetFormatter
-                                        .string(from: state.settingsManager.preferences.high as NSNumber) ?? ""
-                                ) + ")"
+                            NSLocalizedString("High", comment: " ")
                         )
                         .font(.footnote).foregroundColor(.secondary)
 
                         Text(tir_high + " %").font(.footnote).foregroundColor(.loopYellow)
                     }
                     .padding([.trailing], paddingSpace)
-                    .frame(minWidth: 130, maxWidth: .infinity, alignment: .trailing)
+                    .frame(minWidth: 120, maxWidth: .infinity, alignment: .trailing)
                 }
             }
 
@@ -492,7 +486,7 @@ extension Home {
                             ).font(.footnote)
                         }
                         .padding([.trailing], paddingSpace)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .frame(minWidth: 150, maxWidth: .infinity, alignment: .trailing)
                     }
                 }
             }
