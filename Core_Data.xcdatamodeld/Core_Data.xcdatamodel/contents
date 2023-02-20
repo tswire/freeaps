@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="BGaverages" representedClassName="BGaverages" syncable="YES" codeGenerationType="class">
-        <attribute name="average" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="average_1" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="average_7" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="average_30" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="average_90" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="average" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="average_1" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="average_7" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="average_30" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="average_90" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="BGmedian" representedClassName="BGmedian" syncable="YES" codeGenerationType="class">
@@ -23,11 +23,11 @@
     </entity>
     <entity name="HbA1c" representedClassName="HbA1c" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="hba1c" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="hba1c_1" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="hba1c_7" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="hba1c_30" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="hba1c_90" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="hba1c" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="hba1c_1" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="hba1c_7" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="hba1c_30" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="hba1c_90" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="InsulinDistribution" representedClassName="InsulinDistribution" syncable="YES" codeGenerationType="class">
         <attribute name="bolus" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
