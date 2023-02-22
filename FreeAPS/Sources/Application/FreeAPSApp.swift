@@ -1,4 +1,3 @@
-import Firebase
 import SwiftUI
 import Swinject
 
@@ -44,8 +43,6 @@ import Swinject
     }
 
     init() {
-        // Use the Firebase library to configure APIs.
-        FirebaseApp.configure()
 
         debug(
             .default,
