@@ -670,10 +670,7 @@ final class BaseAPSManager: APSManager, Injectable {
 
             // Update the TDD value
             tdd(enacted_: enacted)
-            // Update statistics. Only run if enabled in preferences
-            // if settingsManager.settings.displayStatistics {
             statistics()
-            // }
         }
     }
 
@@ -696,9 +693,7 @@ final class BaseAPSManager: APSManager, Injectable {
 
             coredataContext.performAndWait {
                 let requestTDD = TDD.fetchRequest() as NSFetchRequest<TDD>
-
                 requestTDD.predicate = NSPredicate(format: "timestamp > %@ AND tdd > 0", tenDaysAgo as NSDate)
-
                 let sortTDD = NSSortDescriptor(key: "timestamp", ascending: true)
                 requestTDD.sortDescriptors = [sortTDD]
 
@@ -706,28 +701,12 @@ final class BaseAPSManager: APSManager, Injectable {
 
                 total = uniqEvents.compactMap({ each in each.tdd as? Decimal ?? 0 }).reduce(0, +)
                 indeces = uniqEvents.count
-
                 // Only fetch once. Use same (previous) fetch
                 let twoHoursArray = uniqEvents.filter({ ($0.timestamp ?? Date()) >= twoHoursAgo })
                 nrOfIndeces = twoHoursArray.count
-
                 totalAmount = twoHoursArray.compactMap({ each in each.tdd as? Decimal ?? 0 }).reduce(0, +)
+                nrOfIndeces = twoHoursArray.count
             }
-
-            totalAmount = twoHoursArray.compactMap({ each in each.tdd as? Decimal ?? 0 }).reduce(0, +)
-            var nrOfIndeces = twoHoursArray.count
-
-            /*
-             var nrOfIndeces: Decimal = 0
-             if twoHoursArray.first != nil {
-             for entry in twoHoursArray {
-             if (entry.tdd?.decimalValue ?? 0) > 0 {
-             totalAmount += entry.tdd?.decimalValue ?? 0
-             nrOfIndeces += 1
-             }
-             }
-             }
-             */
 
             if indeces == 0 {
                 indeces = 1
@@ -1353,7 +1332,6 @@ final class BaseAPSManager: APSManager, Injectable {
 
             try? self.coredataContext.save()
         }
-
         print("Test time of LoopStats computation: \(-1 * LoopStatsStartedAt.timeIntervalSinceNow) s")
     }
 

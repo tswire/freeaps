@@ -75,7 +75,6 @@ final class BaseGlucoseStorage: GlucoseStorage, Injectable {
                         try? self.coredataContext.save()
                     }
                 }
-                // }
             }
 
             self.storage.transaction { storage in
