@@ -1043,8 +1043,8 @@ Enact a temp Basal or a temp target */
 "Total" = "Totalt";
 
 /* -------------------------------------------- FPU Strings ------------------------------------------------------*/
-
 /* Enable FPU */
+
 "Enable" = "Aktivera";
 
 /* Header */
