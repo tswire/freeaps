@@ -1045,7 +1045,7 @@ Enact a temp Basal or a temp target */
 /* -------------------------------------------- FPU Strings ------------------------------------------------------*/
 /* Enable FPU */
 
-"Enable" = "Enable";
+"Enable" = "Увімкнути";
 
 /* Header */
 "Convert Fat and Protein" = "Перетворення жиру та білка";
